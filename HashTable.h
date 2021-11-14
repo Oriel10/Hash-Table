@@ -60,7 +60,7 @@ std::pair<int,Data> HashTable<Data>::Find(int key) const{
     return not_found;
 }
 
-/**insert a key when its not in the DS already.
+/*insert a key when its not in the DS already.
 *return values:
 *true - succesfull insertion
 *false - failed insertion, i.e key already exist
@@ -77,13 +77,13 @@ bool HashTable<Data>::insert(int key, Data data){
     res.second = data;
     table[key%table_size].push_back(res);
     num_of_keys++;
-    // std::cout<<"before expand"<<std::endl;
     expandOrShrink();
-    // std::cout<<"after expand"<<std::endl;
     return true;
 }
 
-//delete an existing key
+/*delete an existing key.
+*nothing happens if the key is not in the table
+*/
 template<class Data>
 void HashTable<Data>::erase(int key){
     //nothing to delete
@@ -102,11 +102,6 @@ void HashTable<Data>::erase(int key){
     }
     return;
 }
-
-// template<class Data>
-// DLinkedList<O1Array<Tnode>*>*& HashTable<Data>::operator[](unsigned int i){
-//     return table(i);
-// }
 
 template<class Data>
 HashTable<Data>::~HashTable(){}
@@ -145,16 +140,7 @@ void HashTable<Data>::expandOrShrink(){
     }
     std::vector<std::list<std::pair<int,Data>>> tmp_table(new_size);
     for(int i = 0; i < table_size; ++i){
-        //copy only legit keys
-        // if(!table.is_ini){
-        //     continue;
-        // }
         for(auto& elem : table[i]){
-            // if(!tmp_table.is_initialized(elem->key%new_size)){
-            //     tmp_table[elem->key%new_size] = new DLinkedList<Array<Tnode>*>();
-            //     tmp_table[elem->key%new_size]->insertLast(elem->key,elem->data);
-            //     tmp_table.increment();
-            // }
             std::pair<int,Data> push_pair(elem.first, elem.second);
             tmp_table[(elem.first)%new_size].push_back(push_pair);
         }
@@ -163,6 +149,8 @@ void HashTable<Data>::expandOrShrink(){
     table_size = new_size;
 }
 
+/*print all the keys in the table.
+*/
 template<class Data>
 void HashTable<Data>::printKeys() const{
     for(int i = 0; i < table_size; ++i){
