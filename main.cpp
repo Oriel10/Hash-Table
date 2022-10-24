@@ -12,6 +12,13 @@ int main(int, char**){
     grades.insert(95,"Set Theory");
     grades.insert(97,"Modernic Algebra");
     grades.insert(92,"ProbabilityM");
+    grades.insert(81,"Test");
+    grades.insert(83,"Test");
+    grades.insert(84,"Test");
+    grades.insert(85,"Test");
+    grades.insert(86,"Test");
+    grades.insert(87,"Test");
+    grades.insert(77,"Test");
     grades.printKeys();
 
     return 0;

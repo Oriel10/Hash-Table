@@ -71,7 +71,7 @@ bool HashTable<Data>::insert(int key, Data data){
     std::pair<int,Data> res = Find(key);
     std::pair<int, Data> not_found(-1, Data());
     if(res != not_found){
-        return false;
+        return false; // element with this key already exists
     }
     res.first = key;
     res.second = data;
