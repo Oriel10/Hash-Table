@@ -1,8 +1,8 @@
 CC = g++
-# OBJS = main.o
+OBJS = main.o
 EXEC = hashtable_output
 DEBUG_FLAG = -DNDBUG
-COMP_FLAG = -std=c++11 -Wall -Werror -pedantic-errors 
+COMP_FLAG = -std=c++11 -Wall -pedantic-errors 
 
 # $(EXEC): $(OBJS)
 # 	$(CC) $(DEBUG_FLAG) $(OBJS) -o $@ -L. -lmap
@@ -16,7 +16,7 @@ COMP_FLAG = -std=c++11 -Wall -Werror -pedantic-errors
 # clean:
 # 	rm -f $(OBJS) $(EXEC)
 
-$(EXEC): clean
+$(EXEC): $(OBJS)
 	$(CC) $(COMP_FLAG) -o $@ *.cpp
 
 clean:

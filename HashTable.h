@@ -12,18 +12,33 @@ class HashTable{
     int num_of_keys;
     int table_size;
     
-    static const int INITIAL_SIZE = 10;
-    static const int EXPAND_FACTOR = 2;
-    static constexpr double SHRINK_FACTOR = 0.5;
-    static constexpr double EXPAND_RATIO = 1;
-    static constexpr double SHRINK_RATIO = 0.25;
+    const int INITIAL_SIZE;
+    const int EXPAND_FACTOR;
+    const double SHRINK_FACTOR;
+    const double EXPAND_RATIO;
+    const double SHRINK_RATIO;
     void expandOrShrink();
     bool checkExpand() const;
     bool checkShrink() const;
 public:
     std::vector<std::list<std::pair<int,Data>>> table;
-    HashTable() : table(std::vector<std::list<std::pair<int,Data>>>(INITIAL_SIZE)) ,num_of_keys(0), table_size(INITIAL_SIZE){};
-    HashTable(int size) : table(std::vector<std::list<std::pair<int,Data>>>(size)), num_of_keys(0), table_size(size){};
+    HashTable() : num_of_keys(0),
+                table_size(INITIAL_SIZE),
+                INITIAL_SIZE(10),
+                EXPAND_FACTOR(2),
+                SHRINK_FACTOR(0.5),
+                EXPAND_RATIO(1),
+                SHRINK_RATIO(0.25),
+                table(std::vector<std::list<std::pair<int,Data>>>(INITIAL_SIZE)){};
+    
+    HashTable(int size) : num_of_keys(0),
+                table_size(size),
+                INITIAL_SIZE(10),
+                EXPAND_FACTOR(2),
+                SHRINK_FACTOR(0.5),
+                EXPAND_RATIO(1),
+                SHRINK_RATIO(0.25), 
+                table(std::vector<std::list<std::pair<int,Data>>>(size)){};
     ~HashTable();
     HashTable& operator=(const HashTable& other);
     // list<Array<Lecture*>>*& operator[](unsigned int i);
